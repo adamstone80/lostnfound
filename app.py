@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(BASE_DIR, 'data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret')
+app.config['SECRET_KEY'] = os.environ.get('SESSION_SECRET', os.environ.get('SECRET_KEY', 'dev-secret'))
 
 db = SQLAlchemy(app)
 
@@ -85,9 +85,12 @@ class Rating(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
-@app.before_first_request
 def init_db():
     db.create_all()
+
+
+with app.app_context():
+    init_db()
 
 
 def current_user():
@@ -308,6 +311,7 @@ def stats():
     popular = db.session.query(Item.category, db.func.count(Item.id).label('c')).group_by(Item.category).order_by(db.desc('c')).limit(10).all()
     return render_template('stats.html', total=total, lost=lost, found=found, popular=popular, user=current_user())
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
