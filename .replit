@@ -1,1 +1,5 @@
 run = "python app.py"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
