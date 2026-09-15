@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>FAQ</h3>
+  <div class="accordion" id="faq">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#q1">How do I report an item?</button>
+      </h2>
+      <div id="q1" class="accordion-collapse collapse show" data-bs-parent="#faq">
+        <div class="accordion-body">Use the Report form to add details, photos, and a verification question.</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

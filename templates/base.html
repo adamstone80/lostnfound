@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lost & Found</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <header class="site-header p-3 text-white">
+      <div class="container d-flex flex-wrap align-items-center justify-content-between">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <h3 class="m-0">Lost & Found</h3>
+        </a>
+        <nav>
+          <a class="nav-link text-white" href="/report">Report</a>
+          <a class="nav-link text-white" href="/search">Search</a>
+          <a class="nav-link text-white" href="/stats">Stats</a>
+          <a class="nav-link text-white" href="/faq">FAQ</a>
+        </nav>
+        <div>
+          {% if user %}
+            <a class="btn btn-light btn-sm me-2" href="/profile">Profile</a>
+            <a class="btn btn-outline-light btn-sm" href="/logout">Logout</a>
+          {% else %}
+            <a class="btn btn-light btn-sm me-2" href="/login">Login</a>
+            <a class="btn btn-outline-light btn-sm" href="/register">Register</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+    <main class="container my-4">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-info">
+            {% for m in messages %}{{ m }}<br>{% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="text-center py-4">
+      <div class="container">
+        <small>© Lost & Found — community app</small>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>

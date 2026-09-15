@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Your Profile</h3>
+  <p><strong>{{ user.username }}</strong> • {{ user.contact }}</p>
+  <h5>Your Reports</h5>
+  <div class="list-group">
+    {% for it in items %}
+      <a class="list-group-item" href="/item/{{ it.id }}">{{ it.title }} — {{ it.kind }} — {{ it.status }}</a>
+    {% else %}
+      <div class="p-3">You have no reports.</div>
+    {% endfor %}
+  </div>
+{% endblock %}

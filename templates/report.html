@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Report Lost or Found Item</h3>
+  <form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input class="form-control" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" name="description"></textarea>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Category</label>
+        <input class="form-control" name="category">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Location</label>
+        <input class="form-control" name="location">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label class="form-label">Kind</label>
+        <select class="form-select" name="kind">
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Photo</label>
+      <input class="form-control" type="file" name="photo">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Expires in (days)</label>
+      <input class="form-control" name="expires_days" value="30">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Verification question (for new claimants)</label>
+      <input class="form-control" name="verification_question" placeholder="e.g., what sticker is on the back?">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Verification answer</label>
+      <input class="form-control" name="verification_answer">
+    </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" name="anonymous" id="anon">
+      <label class="form-check-label" for="anon">Report anonymously</label>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}

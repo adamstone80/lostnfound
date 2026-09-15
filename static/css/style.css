@@ -1,0 +1,8 @@
+:root{
+  --blue-start:#1e3c72;
+  --blue-end:#2a5298;
+}
+body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f6fbff,white)}
+.site-header{background:linear-gradient(90deg,var(--blue-start),var(--blue-end));}
+.nav-link{margin-right:8px}
+#mini-map, #item-map{border-radius:6px}

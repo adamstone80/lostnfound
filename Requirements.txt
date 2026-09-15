@@ -1,0 +1,43 @@
+Project Title: Lost & Found App
+
+Intent: To create an app that allows users to report lost items and find found items in their community.
+
+Customer Journey:
+User who has lost an item-> Reports the item in the app -> Waits for notifications -> Receives updates -> Communicates with the finder -> Arranges for the item's return
+User who has found an item-> Reports the item in the app -> Waits for notifications -> Receives updates -> Communicates with the owner -> Arranges for the item's return
+
+
+Requirements:
+1. as a user who has found an item, I want to be able to report it in the app so that others can see it and claim it.
+2. as a user who has lost an item, I want to be able to report it in the app so that others can help me find it.
+3. as a user, I want to be able to search for lost and found items by category, location, and date so that I can easily find relevant items.
+4. as a user , I want to receive notifications when an item that matches my lost item report is found so that I can quickly retrieve it.
+5. as a user, I want to be able to communicate with the person who found my lost item through the app so that we can arrange for its return.
+6. when a new user joins, their lost item posted on the app should have a verification quiz like: what sticker is on the back of this item? This is to ensure that the person claiming the lost item is the rightful owner.
+7. as a user, I want to be able to upload photos of the lost or found items so that others can easily identify them.
+8. as a user, I want to be able to view the history of my lost and found reports so that I can keep track of my items.
+9. as a user, I want to be able to edit or delete my lost and found reports so that I can manage my items effectively.
+10. as a user, I want to be able to rate and review the experience of returning or claiming an item so that others can have confidence in the process.
+11. locations of lost item reports should be displayed on a map so that users can easily see where items have been reported lost or found.
+12. as a user, I want to be able to filter lost and found items by distance from my current location so that I can find items that are nearby.
+13. as a user, I want to be able to set a time frame for how long my lost item report will be active so that I can manage the visibility of my report.
+14. as a user, i want to be able to receive reminders about my lost item report so that I can follow up on it if necessary.
+15. as a user, I want to be able to share my lost or found item report on social media platforms so that I can reach a wider audience and increase the chances of finding or returning the item.
+16. as a user, I want to be able to see statistics on the number of lost and found items reported in my community so that I can understand the scale of the issue.
+17. as a user, I want to be able to report inappropriate or fraudulent lost and found reports so that the app maintains a trustworthy environment.
+18. i want a seacrch functionality that allows users to search for lost and found items using keywords so that they can find specific items more easily.
+19. as a user, I want to be able to receive tips and advice on how to prevent losing items in the future so that I can reduce the chances of losing my belongings.
+20. as a user, I want to be able to set up a profile with my contact information so that others can reach me if they find my lost item.
+21. as a user, I want to be able to see the most recent lost and found reports in my area so that I can stay updated on new items.
+22. as a user, I want to be able to see the most popular lost and found items in my area so that I can understand what items are commonly lost or found.
+23. as a user, I want to be able to receive notifications about lost and found events or community gatherings related to lost items so that I can participate and help others.
+24. as a user, I want to be able to access a FAQ section in the app so that I can find answers to common questions about lost and found items.
+25. as a user, I want to be able to provide feedback on the app's functionality and suggest improvements so that the app can be enhanced based on user needs.
+26. once the verification is complete, a chat space should be enabled between the finder and the owner of the lost item so that they can communicate directly and arrange for the item's return.
+27. as a user, I want to be able to set privacy settings for my lost and found reports so that I can control who can see my items.
+28. as a user, I want to be able to receive alerts for items that match my lost item report even if they are outside my immediate area so that I can increase my chances of finding my item.
+29. as a user, I want to be able to see the status of my lost item report (e.g., pending, found, claimed) so that I can track its progress.
+30. as a user, I want to be able to report lost and found items anonymously if I choose to do so so that I can protect my privacy.
+31. as a user, I want to be able to see the estimated value of lost and found items so that I can understand their significance.
+32. as a user, I want to be able to receive notifications about updates or changes to my lost item report so that I can stay informed.
+33. as someone who has had their lost item returned, i want to be able to rate the returner and provide feedback on the experience so that others can have confidence in the process.

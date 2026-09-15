@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Search Results</h3>
+  <div class="list-group">
+    {% for it in items %}
+      <a href="/item/{{ it.id }}" class="list-group-item list-group-item-action">
+        <strong>{{ it.title }}</strong> — {{ it.category }} — {{ it.location }}
+      </a>
+    {% else %}
+      <div class="p-3">No results</div>
+    {% endfor %}
+  </div>
+{% endblock %}

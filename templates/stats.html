@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Community Statistics</h3>
+  <p>Total reports: {{ total }} — Lost: {{ lost }} — Found: {{ found }}</p>
+  <h5>Popular Categories</h5>
+  <ul>
+    {% for cat, c in popular %}
+      <li>{{ cat }} — {{ c }}</li>
+    {% else %}
+      <li class="text-muted">No data yet</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

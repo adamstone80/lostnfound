@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      <h4>Recent Reports</h4>
+      <div class="list-group">
+        {% for it in items %}
+          <a href="/item/{{ it.id }}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{ it.title }}</h5>
+              <small>{{ it.date_reported.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <p class="mb-1">{{ it.description[:140] }}</p>
+            <small>{{ it.category }} • {{ it.location }}</small>
+          </a>
+        {% else %}
+          <div class="p-3">No reports yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-body text-center">
+          <h5>Quick Actions</h5>
+          <a class="btn btn-primary" href="/report">Report Lost/Found</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h6>Map View</h6>
+          <div id="mini-map" style="height:200px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

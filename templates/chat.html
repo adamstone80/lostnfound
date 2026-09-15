@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h4>Chat about: {{ item.title }}</h4>
+  <div class="border p-3 mb-3" style="height:300px;overflow:auto;">
+    {% for m in messages %}
+      <div><strong>{{ m.sender_id }}:</strong> {{ m.text }} <small class="text-muted">{{ m.created_at.strftime('%Y-%m-%d %H:%M') }}</small></div>
+    {% else %}
+      <div class="text-muted">No messages yet.</div>
+    {% endfor %}
+  </div>
+  <form method="post">
+    <div class="mb-3">
+      <textarea class="form-control" name="text" required></textarea>
+    </div>
+    <button class="btn btn-primary">Send</button>
+  </form>
+{% endblock %}

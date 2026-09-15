@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h4>Claim for: {{ item.title }}</h4>
+  {% if item.verification_question %}
+    <p>Please answer: <strong>{{ item.verification_question }}</strong></p>
+    <form method="post">
+      <div class="mb-3">
+        <input class="form-control" name="answer" required>
+      </div>
+      <button class="btn btn-primary">Submit answer</button>
+    </form>
+  {% else %}
+    <p>No verification required. You'll be redirected to chat.</p>
+    <a class="btn btn-primary" href="/chat/{{ claim.id }}">Open chat</a>
+  {% endif %}
+{% endblock %}
