@@ -6,3 +6,6 @@ body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:linear-gr
 .site-header{background:linear-gradient(90deg,var(--blue-start),var(--blue-end));}
 .nav-link{margin-right:8px}
 #mini-map, #item-map{border-radius:6px}
+.map-picker{position:relative}
+#location-picker{height:300px;border-radius:6px}
+.map-picker-pin{position:absolute;top:50%;left:50%;transform:translate(-50%,-100%);font-size:32px;line-height:1;pointer-events:none;z-index:1000}

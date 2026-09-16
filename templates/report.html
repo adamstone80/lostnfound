@@ -28,6 +28,16 @@
       </div>
     </div>
     <div class="mb-3">
+      <label class="form-label">Pinpoint location on map</label>
+      <div class="map-picker">
+        <div id="location-picker"></div>
+        <div class="map-picker-pin">📍</div>
+      </div>
+      <small class="text-muted" id="picked-coords">Drag the map to move the pin</small>
+      <input type="hidden" name="lat" id="lat-input">
+      <input type="hidden" name="lng" id="lng-input">
+    </div>
+    <div class="mb-3">
       <label class="form-label">Photo</label>
       <input class="form-control" type="file" name="photo">
     </div>
