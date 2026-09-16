@@ -6,12 +6,19 @@
       <div class="list-group">
         {% for it in items %}
           <a href="/item/{{ it.id }}" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{ it.title }}</h5>
-              <small>{{ it.date_reported.strftime('%Y-%m-%d') }}</small>
+            <div class="d-flex w-100">
+              {% if it.photo %}
+                <img src="{{ it.photo }}" alt="" class="me-3 rounded" style="width:64px;height:64px;object-fit:cover;flex-shrink:0;">
+              {% endif %}
+              <div class="flex-grow-1">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{ it.title }}</h5>
+                  <small>{{ it.date_reported.strftime('%Y-%m-%d') }}</small>
+                </div>
+                <p class="mb-1">{{ it.description[:140] }}</p>
+                <small>{{ it.category }} • {{ it.location }}</small>
+              </div>
             </div>
-            <p class="mb-1">{{ it.description[:140] }}</p>
-            <small>{{ it.category }} • {{ it.location }}</small>
           </a>
         {% else %}
           <div class="p-3">No reports yet.</div>
