@@ -3,3 +3,7 @@ run = "python app.py"
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[deployment]
+run = ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "app:app"]
+deploymentTarget = "autoscale"
