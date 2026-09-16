@@ -288,14 +288,18 @@ def profile():
 @app.route('/search')
 def search():
     q = request.args.get('q', '')
-    category = request.args.get('category')
+    category = request.args.get('category', '')
+    kind = request.args.get('kind', '')
     items = Item.query
     if q:
         items = items.filter((Item.title.contains(q)) | (Item.description.contains(q)))
     if category:
         items = items.filter_by(category=category)
+    if kind in ('lost', 'found'):
+        items = items.filter_by(kind=kind)
     items = items.order_by(Item.date_reported.desc()).limit(100).all()
-    return render_template('search.html', items=items, q=q)
+    categories = [c[0] for c in db.session.query(Item.category).filter(Item.category.isnot(None)).distinct().order_by(Item.category) if c[0]]
+    return render_template('search.html', items=items, q=q, category=category, kind=kind, categories=categories)
 
 
 @app.route('/faq')

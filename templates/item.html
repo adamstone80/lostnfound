@@ -2,13 +2,18 @@
 {% block content %}
   <div class="row">
     <div class="col-md-8">
-      <h3>{{ item.title }}</h3>
+      <h1 class="page-title mb-1">
+        <span class="badge {{ 'bg-danger' if item.kind == 'lost' else 'bg-success' }} me-2">{{ item.kind|capitalize }}</span>
+        {{ item.title }}
+      </h1>
       <p>{{ item.description }}</p>
-      <p><strong>Category:</strong> {{ item.category }} | <strong>Location:</strong> {{ item.location }}</p>
+      {% if item.category or item.location %}
+        <p class="meta-text">{{ [item.category, item.location] | select | join(' • ') }}</p>
+      {% endif %}
       {% if item.photo %}
-        <img src="{{ item.photo }}" class="img-fluid mb-3">
+        <img src="{{ item.photo }}" class="img-fluid mb-3 rounded">
       {% else %}
-        <img src="https://source.unsplash.com/800x400/?lost,found" class="img-fluid mb-3">
+        <img src="https://source.unsplash.com/800x400/?lost,found" class="img-fluid mb-3 rounded">
       {% endif %}
       <form method="post">
         <button class="btn btn-success">Claim this item</button>
@@ -16,13 +21,13 @@
     </div>
     <div class="col-md-4">
       <div class="card p-3">
-        <p><strong>Reported:</strong> {{ item.date_reported.strftime('%Y-%m-%d') }}</p>
-        <p><strong>Status:</strong> {{ item.status }}</p>
-        {% if item.verification_question %}
-          <p><strong>Verification:</strong> {{ item.verification_question }}</p>
-        {% endif %}
+        <p class="mb-2"><strong>Reported:</strong> {{ item.date_reported.strftime('%Y-%m-%d') }}</p>
+        <p class="mb-0">
+          <strong>Status:</strong>
+          <span class="badge {{ {'pending':'bg-warning text-dark','claimed':'bg-primary','returned':'bg-secondary'}.get(item.status, 'bg-warning text-dark') }}">{{ item.status|capitalize }}</span>
+        </p>
       </div>
-      <div id="item-map" style="height:250px;" class="mt-3"></div>
+      <div id="item-map" style="height:250px;" class="mt-3" data-lat="{{ item.lat or '' }}" data-lng="{{ item.lng or '' }}" data-title="{{ item.title }}"></div>
     </div>
   </div>
 {% endblock %}

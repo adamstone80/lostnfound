@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
+  <h1 class="page-title">Recent Reports</h1>
   <div class="row">
     <div class="col-md-8">
-      <h4>Recent Reports</h4>
       <div class="list-group">
         {% for it in items %}
           <a href="/item/{{ it.id }}" class="list-group-item list-group-item-action">
@@ -16,33 +16,42 @@
                     <span class="badge {{ 'bg-danger' if it.kind == 'lost' else 'bg-success' }} me-2">{{ it.kind|capitalize }}</span>
                     {{ it.title }}
                   </h5>
-                  <small>{{ it.date_reported.strftime('%Y-%m-%d') }}</small>
+                  <small class="meta-text">{{ it.date_reported.strftime('%Y-%m-%d') }}</small>
                 </div>
                 <p class="mb-1">{{ it.description[:140] }}</p>
                 {% if it.category or it.location %}
-                  <small>{{ [it.category, it.location] | select | join(' • ') }}</small>
+                  <small class="meta-text">{{ [it.category, it.location] | select | join(' • ') }}</small>
                 {% endif %}
               </div>
             </div>
           </a>
         {% else %}
-          <div class="p-3">No reports yet.</div>
+          <div class="empty-state">No reports yet. Be the first to <a href="/report">report an item</a>.</div>
         {% endfor %}
       </div>
     </div>
     <div class="col-md-4">
       <div class="card mb-3">
         <div class="card-body text-center">
-          <h5>Quick Actions</h5>
-          <a class="btn btn-primary" href="/report">Report Lost/Found</a>
+          <h2 class="section-heading">Quick Actions</h2>
+          <a class="btn btn-primary" href="/report">Report Item</a>
         </div>
       </div>
       <div class="card">
         <div class="card-body">
-          <h6>Map View</h6>
+          <h2 class="section-heading">Map View</h2>
           <div id="mini-map" style="height:200px;"></div>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    {% set ns = namespace(items=[]) %}
+    {% for it in items %}
+      {% if it.lat and it.lng %}
+        {% set ns.items = ns.items + [{'id': it.id, 'lat': it.lat, 'lng': it.lng, 'title': it.title}] %}
+      {% endif %}
+    {% endfor %}
+    window.homeItems = {{ ns.items | tojson }};
+  </script>
 {% endblock %}

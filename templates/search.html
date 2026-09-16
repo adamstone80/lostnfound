@@ -1,13 +1,62 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>Search Results</h3>
+  <h1 class="page-title">Search</h1>
+
+  <form method="get" class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="form-label">Keyword</label>
+          <input class="form-control" name="q" value="{{ q }}" placeholder="Title or description">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Category</label>
+          <select class="form-select" name="category">
+            <option value="">Any category</option>
+            {% for c in categories %}
+              <option value="{{ c }}" {{ 'selected' if c == category }}>{{ c }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Kind</label>
+          <select class="form-select" name="kind">
+            <option value="" {{ 'selected' if not kind }}>Lost & Found</option>
+            <option value="lost" {{ 'selected' if kind == 'lost' }}>Lost only</option>
+            <option value="found" {{ 'selected' if kind == 'found' }}>Found only</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-primary w-100">Search</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
   <div class="list-group">
     {% for it in items %}
       <a href="/item/{{ it.id }}" class="list-group-item list-group-item-action">
-        <strong>{{ it.title }}</strong> — {{ it.category }} — {{ it.location }}
+        <div class="d-flex w-100">
+          {% if it.photo %}
+            <img src="{{ it.photo }}" alt="{{ it.title }}" class="me-3 rounded" style="width:64px;height:64px;object-fit:cover;flex-shrink:0;">
+          {% endif %}
+          <div class="flex-grow-1">
+            <div class="d-flex w-100 justify-content-between align-items-start">
+              <h5 class="mb-1">
+                <span class="badge {{ 'bg-danger' if it.kind == 'lost' else 'bg-success' }} me-2">{{ it.kind|capitalize }}</span>
+                {{ it.title }}
+              </h5>
+              <small class="meta-text">{{ it.date_reported.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <p class="mb-1">{{ it.description[:140] }}</p>
+            {% if it.category or it.location %}
+              <small class="meta-text">{{ [it.category, it.location] | select | join(' • ') }}</small>
+            {% endif %}
+          </div>
+        </div>
       </a>
     {% else %}
-      <div class="p-3">No results</div>
+      <div class="empty-state">No items match your search. Try a different keyword or clear the filters.</div>
     {% endfor %}
   </div>
 {% endblock %}
