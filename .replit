@@ -28,3 +28,7 @@ waitForPort = 5000
 
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[deployment]
+run = ["uv", "run", "gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "app:app"]
+deploymentTarget = "autoscale"
